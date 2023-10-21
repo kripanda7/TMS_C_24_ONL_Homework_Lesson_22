@@ -1,0 +1,11 @@
+GET http://localhost:8080/
+###
+GET http://localhost:8080/hello
+###
+GET http://localhost:8080/minsk
+###
+GET http://localhost:8080/washington
+###
+GET http://localhost:8080/beijing
+###
+GET http://localhost:8080/isAdult?age=19
