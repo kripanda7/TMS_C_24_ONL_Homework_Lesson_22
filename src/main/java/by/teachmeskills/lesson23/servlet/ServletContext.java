@@ -1,6 +1,5 @@
 package by.teachmeskills.lesson23.servlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +9,10 @@ import java.io.IOException;
 @WebServlet("/context")
 public class ServletContext extends HttpServlet {
     public static final String SERVLET_CONTEXT_ATTRIBUTE_NAME = "contextAttr";
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(getServletContext().getAttribute(SERVLET_CONTEXT_ATTRIBUTE_NAME) == null) {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        if (getServletContext().getAttribute(SERVLET_CONTEXT_ATTRIBUTE_NAME) == null) {
             resp.getWriter().println("First attempt to servlet /context");
             getServletContext().setAttribute(SERVLET_CONTEXT_ATTRIBUTE_NAME, 1);
         } else {

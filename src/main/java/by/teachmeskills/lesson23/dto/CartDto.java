@@ -6,7 +6,6 @@ import java.util.List;
 
 @Data
 public class CartDto {
-
     private List<ProductDto> products;
     private UserDto user;
 }

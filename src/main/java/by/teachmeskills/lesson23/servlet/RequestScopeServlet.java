@@ -13,6 +13,7 @@ import java.io.IOException;
 public class RequestScopeServlet extends HttpServlet {
 
     public static final String REQUEST_ATTRIBUTE_NAME = "reqAttr";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute(REQUEST_ATTRIBUTE_NAME, new UserDto("Dmitry", "kripanda"));

@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 
 @Data
 public class ProductDto {
-
     private final BigDecimal price;
     private final String name;
 }

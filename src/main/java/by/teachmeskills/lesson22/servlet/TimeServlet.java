@@ -1,15 +1,13 @@
 package by.teachmeskills.lesson22.servlet;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(urlPatterns = {"/minsk", "/washington", "/beijing"})
 public class TimeServlet extends HttpServlet {
@@ -19,15 +17,15 @@ public class TimeServlet extends HttpServlet {
             case "/minsk" -> getTime("Europe/Minsk");
             case "/washington" -> getTime("America/Virgin");
             case "/beijing" -> getTime("Asia/Shanghai");
-            default -> "time";
+            default -> getTime("Europe/Paris");
         };
         resp.getWriter().println(result);
     }
 
     public static String getTime(String timeZone) {
-        final DateTime dateTime = new DateTime();
-        final DateTimeFormatter outputFormatter
-                = DateTimeFormat.forPattern("yyyy-MM-dd hh:mm:ss a").withZone(DateTimeZone.forID(timeZone));
-        return outputFormatter.print(dateTime);
+        return LocalDateTime.now()
+                .atZone(ZoneId.of(timeZone))
+                .toLocalDateTime()
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a"));
     }
 }
