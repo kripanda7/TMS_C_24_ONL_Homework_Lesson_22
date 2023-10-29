@@ -16,7 +16,7 @@ public class ApplicationListener implements ServletContextListener, HttpSessionA
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         sce.getServletContext().setSessionTimeout(300);
-        System.out.println("ServletContext is initialized.");
+        System.out.println("Application is running.");
     }
 
     @Override
