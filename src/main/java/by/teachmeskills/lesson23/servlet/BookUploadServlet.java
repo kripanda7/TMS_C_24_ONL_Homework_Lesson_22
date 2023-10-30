@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.Properties;
 
 @WebServlet("/load-book")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 10)
@@ -22,7 +23,9 @@ public class BookUploadServlet extends HttpServlet {
         try {
             Part filePart = req.getPart("file");
             String name = filePart.getSubmittedFileName();
-            filePart.write("C:\\Users\\Public\\" + name);
+            Properties appProps = new Properties();
+            appProps.load(getClass().getClassLoader().getResourceAsStream("application.yml"));
+            filePart.write(appProps.getProperty("storagePath") + name);
             resp.getWriter().print("The file uploaded successfully :)");
         } catch (Exception e) {
             resp.getWriter().print("Something wrong :(");
