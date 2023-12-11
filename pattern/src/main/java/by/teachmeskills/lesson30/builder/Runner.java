@@ -1,6 +1,9 @@
 package by.teachmeskills.lesson30.builder;
 
+import org.apache.log4j.Logger;
+
 public class Runner {
+    private static final Logger LOGGER = Logger.getLogger(Runner.class);
     public static void main(String[] args) {
         Car johnsCar = Car.builder()
                 .brand("VW")
@@ -19,8 +22,8 @@ public class Runner {
                 .seats(3)
                 .wheels(6)
                 .build();
-        System.out.println("John's car: " + johnsCar.toString());
-        System.out.println("Tom's car: " + tomsCar.toString());
-        System.out.println("Liza's car: " + lizasCar.toString());
+        LOGGER.info("John's car: " + johnsCar.toString());
+        LOGGER.info("Tom's car: " + tomsCar.toString());
+        LOGGER.info("Liza's car: " + lizasCar.toString());
     }
 }
