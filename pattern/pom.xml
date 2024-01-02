@@ -20,6 +20,7 @@
 
         <lombok.version>1.18.30</lombok.version>
         <log4j.version>1.2.16</log4j.version>
+        <postgresql.version>42.7.1</postgresql.version>
     </properties>
 
     <dependencies>
@@ -45,6 +46,11 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
     </dependencies>
     <build>
