@@ -7,8 +7,10 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>servlet</module>
-    <module>pattern</module>
+      <module>servlet</module>
+      <module>pattern</module>
+      <module>spring</module>
+      <module>spring-mvc</module>
   </modules>
 
 </project>
