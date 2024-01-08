@@ -1,7 +1,8 @@
 package by.teachmeskills.lesson39.service;
 
 import by.teachmeskills.lesson39.dao.PostgreSQLJDBC;
-import by.teachmeskills.lesson39.model.Car;
+import by.teachmeskills.lesson39.dto.CarDto;
+import by.teachmeskills.lesson39.mapper.CarMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,24 +13,25 @@ import java.util.List;
 public class CarService {
 
     private final PostgreSQLJDBC postgreSQLJDBC;
+    private final CarMapper carMapper;
 
-    public List<Car> getCars() {
-        return postgreSQLJDBC.getCars();
+    public List<CarDto> getCars() {
+        return postgreSQLJDBC.getCars().stream().map(carMapper::toDTO).toList();
     }
 
-    public void save(Car car) {
-        postgreSQLJDBC.saveCar(car);
+    public void save(CarDto carDto) {
+        postgreSQLJDBC.saveCar(carMapper.toModel(carDto));
     }
 
     public void delete(Long id) {
         postgreSQLJDBC.deleteCar(id);
     }
 
-    public Car getCarById(Long id) {
-        return postgreSQLJDBC.getCarById(id);
+    public CarDto getCarById(Long id) {
+        return carMapper.toDTO(postgreSQLJDBC.getCarById(id));
     }
 
-    public void update(Car car) {
-        postgreSQLJDBC.updateCar(car);
+    public void update(CarDto carDto) {
+        postgreSQLJDBC.updateCar(carMapper.toModel(carDto));
     }
 }

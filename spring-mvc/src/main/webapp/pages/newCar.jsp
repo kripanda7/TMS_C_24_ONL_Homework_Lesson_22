@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>New Car</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div align="center">
@@ -12,10 +13,12 @@
             <tr>
                 <td>Name: </td>
                 <td><form:input path="name" /></td>
+                <td><form:errors path="name" cssClass="error" /></td>
             </tr>
             <tr>
                 <td>Price: </td>
                 <td><form:input path="price" /></td>
+                <td><form:errors path="price" cssClass="error" /></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Save"></td>

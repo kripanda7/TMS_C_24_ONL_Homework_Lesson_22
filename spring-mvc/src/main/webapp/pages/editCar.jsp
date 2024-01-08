@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Edit Car</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div align="center">
@@ -10,18 +11,20 @@
     <form:form action="update" method="post" modelAttribute="car">
         <table border="0" cellpadding="5">
             <tr>
-                <td>ID: </td>
+                <td>ID:</td>
                 <td>${car.id}
                     <form:hidden path="id"/>
                 </td>
             </tr>
             <tr>
-                <td>Name: </td>
-                <td><form:input path="name" /></td>
+                <td>Name:</td>
+                <td><form:input path="name"/></td>
+                <td><form:errors path="name" cssClass="error"/></td>
             </tr>
             <tr>
-                <td>Price: </td>
-                <td><form:input path="price" /></td>
+                <td>Price:</td>
+                <td><form:input path="price"/></td>
+                <td><form:errors path="price" cssClass="error"/></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Save"></td>
