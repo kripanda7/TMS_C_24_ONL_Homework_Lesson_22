@@ -1,6 +1,6 @@
 package by.teachmeskills.lesson39.controller;
 
-import by.teachmeskills.lesson39.model.Car;
+import by.teachmeskills.lesson39.dto.CarDto;
 import by.teachmeskills.lesson39.service.CarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -34,13 +34,13 @@ public class CarController {
 
     @GetMapping("/new")
     public String newCar(Model model) {
-        Car car = Car.builder().build();
+        CarDto car = CarDto.builder().build();
         model.addAttribute("car", car);
         return "newCar";
     }
 
     @PostMapping("/save")
-    public String saveCar(@Valid @ModelAttribute Car car, BindingResult result) {
+    public String saveCar(@Valid @ModelAttribute CarDto car, BindingResult result) {
         if (result.hasErrors()) {
             log.error(result.getAllErrors().stream().map(DefaultMessageSourceResolvable::toString).toList());
             return "newCar";
@@ -57,13 +57,13 @@ public class CarController {
 
     @GetMapping("/edit")
     public String editCar(Model model, @RequestParam Long id) {
-        Car car = carService.getCarById(id);
+        CarDto car = carService.getCarById(id);
         model.addAttribute("car", car);
         return "editCar";
     }
 
     @PostMapping("/update")
-    public String updateCar(@Valid @ModelAttribute Car car, BindingResult result) throws Exception {
+    public String updateCar(@Valid @ModelAttribute CarDto car, BindingResult result) throws Exception {
         if (result.hasErrors()) {
             log.error(result.getAllErrors().stream().map(DefaultMessageSourceResolvable::toString).toList());
             return "editCar";
