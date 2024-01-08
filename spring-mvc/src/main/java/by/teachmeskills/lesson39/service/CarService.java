@@ -2,18 +2,16 @@ package by.teachmeskills.lesson39.service;
 
 import by.teachmeskills.lesson39.dao.PostgreSQLJDBC;
 import by.teachmeskills.lesson39.model.Car;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class CarService {
 
     private final PostgreSQLJDBC postgreSQLJDBC;
-
-    public CarService(PostgreSQLJDBC postgreSQLJDBC) {
-        this.postgreSQLJDBC = postgreSQLJDBC;
-    }
 
     public List<Car> getCars() {
         return postgreSQLJDBC.getCars();

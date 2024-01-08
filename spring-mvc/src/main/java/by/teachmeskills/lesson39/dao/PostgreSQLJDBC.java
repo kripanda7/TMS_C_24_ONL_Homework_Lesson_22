@@ -1,8 +1,8 @@
 package by.teachmeskills.lesson39.dao;
 
 import by.teachmeskills.lesson39.model.Car;
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
+import lombok.extern.log4j.Log4j;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,9 +13,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Log4j
+@Repository
 public class PostgreSQLJDBC {
-    private static final Logger LOGGER = Logger.getLogger(PostgreSQLJDBC.class);
 
     private Connection conn = null;
     private Statement stmt = null;
@@ -31,20 +31,16 @@ public class PostgreSQLJDBC {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT * FROM TMS.CAR ORDER BY ID ASC;");
             while (rs.next()) {
-                result.add(Car.builder()
-                        .id(rs.getLong("id"))
-                        .name(rs.getString("name"))
-                        .price(rs.getInt("price"))
-                        .build());
+                result.add(Car.builder().id(rs.getLong("id")).name(rs.getString("name")).price(rs.getInt("price")).build());
 
             }
             rs.close();
             stmt.close();
             conn.close();
-            LOGGER.info("Successfully selected data from table.");
+            log.info("Successfully selected data from table.");
 
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
         return result;
     }
@@ -60,20 +56,16 @@ public class PostgreSQLJDBC {
             prstmt.setLong(1, id);
             rs = prstmt.executeQuery();
             while (rs.next()) {
-                car = Car.builder()
-                        .id(rs.getLong("id"))
-                        .name(rs.getString("name"))
-                        .price(rs.getInt("price"))
-                        .build();
+                car = Car.builder().id(rs.getLong("id")).name(rs.getString("name")).price(rs.getInt("price")).build();
 
             }
             rs.close();
             stmt.close();
             conn.close();
-            LOGGER.info("Successfully selected data from table.");
+            log.info("Successfully selected data from table.");
 
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
         return car;
     }
@@ -82,8 +74,7 @@ public class PostgreSQLJDBC {
         try {
             conn = getConnection();
             conn.setAutoCommit(false);
-            String sql = "INSERT INTO TMS.CAR (name,price) "
-                    + "VALUES (?, ?);";
+            String sql = "INSERT INTO TMS.CAR (name,price) " + "VALUES (?, ?);";
             prstmt = conn.prepareStatement(sql);
             prstmt.setString(1, car.getName());
             prstmt.setInt(2, car.getPrice());
@@ -91,9 +82,9 @@ public class PostgreSQLJDBC {
             prstmt.close();
             conn.commit();
             conn.close();
-            LOGGER.info("Successfully inserted data into table.");
+            log.info("Successfully inserted data into table.");
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
@@ -110,9 +101,9 @@ public class PostgreSQLJDBC {
             prstmt.close();
             conn.commit();
             conn.close();
-            LOGGER.info("Successfully inserted data into table.");
+            log.info("Successfully inserted data into table.");
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
@@ -127,16 +118,14 @@ public class PostgreSQLJDBC {
             prstmt.close();
             conn.commit();
             conn.close();
-            LOGGER.info("Successfully inserted data into table.");
+            log.info("Successfully inserted data into table.");
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
     private Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
-        return DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/tms_database",
-                        "kripanda", "12345");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/tms_database", "kripanda", "12345");
     }
 }
