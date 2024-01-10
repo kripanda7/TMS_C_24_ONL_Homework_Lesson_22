@@ -1,3 +1,4 @@
-database.url: "jdbc:postgresql://localhost:5432/tms_database"
-database.user: "kripanda"
-database.password: 12345
+database:
+  url: "jdbc:postgresql://localhost:5432/tms_database"
+  user: "kripanda"
+  password: 12345
