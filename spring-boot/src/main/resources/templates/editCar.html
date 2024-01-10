@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Car</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div align="center">
+    <h2>Edit Car</h2>
+    <form action="update" method="post" th:object="${car}">
+        <table border="0" cellpadding="5">
+            <tr>
+                <td>ID:</td>
+                <td><input type="text" th:field="*{id}">
+                </td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{name}"></td>
+                <p th:if="${#fields.hasErrors('name')}"></p>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><input type="text" th:field="*{price}"></td>
+                <p th:if="${#fields.hasErrors('price')}"></p>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Save"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

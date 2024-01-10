@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Car Manager</title>
+</head>
+<body>
+<div>
+    <h2>Car Manager</h2>
+    <h3><a href="/new">New Car</a></h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <th:block th:each="car : ${listCars}">
+            <tr>
+                <td th:text="${car.id}"></td>
+                <td th:text="${car.name}"></td>
+                <td th:text="${car.price}"></td>
+                <td>
+                    <a th:href="@{'/edit?id=' + ${car.id}}">Edit</a>
+
+                    <a th:href="@{'/delete?id=' + ${car.id}}">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

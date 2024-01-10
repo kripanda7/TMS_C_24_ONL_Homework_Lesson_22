@@ -11,6 +11,7 @@
       <module>pattern</module>
       <module>spring</module>
       <module>spring-mvc</module>
+      <module>spring-boot</module>
   </modules>
 
 </project>
