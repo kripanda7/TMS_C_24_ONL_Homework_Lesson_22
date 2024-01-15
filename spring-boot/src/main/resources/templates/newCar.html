@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Car</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div align="center">
+    <h2>New Car</h2>
+    <form action="/new" method="post" th:object="${car}">
+        <table border="0" cellpadding="5">
+            <tr>
+                <label for="name">Name: </label>
+                <input type="text" th:field="*{name}" id="name">
+                <p th:if="${#fields.hasErrors('name')}"></p>
+            </tr>
+            <tr>
+                <label for="price">Price: </label>
+                <input class="form-control" type="text" th:field="*{price}" id="price">
+                <div class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Save"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
