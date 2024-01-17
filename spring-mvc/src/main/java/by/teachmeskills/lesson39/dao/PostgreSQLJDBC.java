@@ -1,6 +1,6 @@
 package by.teachmeskills.lesson39.dao;
 
-import by.teachmeskills.lesson39.model.Car;
+import by.teachmeskills.lesson39.entity.Car;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Repository;
 
@@ -12,16 +12,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Log4j
 @Repository
-public class PostgreSQLJDBC {
+public class PostgreSQLJDBC implements CarDao {
 
     private Connection conn = null;
     private Statement stmt = null;
     private PreparedStatement prstmt = null;
     private ResultSet rs = null;
 
+    @Override
     public List<Car> getCars() {
         List<Car> result = new ArrayList<>();
         try {
@@ -31,8 +33,7 @@ public class PostgreSQLJDBC {
             stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT * FROM TMS.CAR ORDER BY ID ASC;");
             while (rs.next()) {
-                result.add(Car.builder().id(rs.getLong("id")).name(rs.getString("name")).price(rs.getInt("price")).build());
-
+                result.add(new Car(rs.getLong("id"), rs.getString("name"), rs.getInt("price"), rs.getBoolean("deleted")));
             }
             rs.close();
             stmt.close();
@@ -45,7 +46,8 @@ public class PostgreSQLJDBC {
         return result;
     }
 
-    public Car getCarById(Long id) {
+    @Override
+    public Optional<Car> getCarById(Long id) {
         Car car = null;
         try {
             conn = getConnection();
@@ -56,8 +58,7 @@ public class PostgreSQLJDBC {
             prstmt.setLong(1, id);
             rs = prstmt.executeQuery();
             while (rs.next()) {
-                car = Car.builder().id(rs.getLong("id")).name(rs.getString("name")).price(rs.getInt("price")).build();
-
+                car = new Car(rs.getLong("id"), rs.getString("name"), rs.getInt("price"), rs.getBoolean("deleted"));
             }
             rs.close();
             stmt.close();
@@ -67,9 +68,10 @@ public class PostgreSQLJDBC {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        return car;
+        return Optional.of(car);
     }
 
+    @Override
     public void saveCar(Car car) {
         try {
             conn = getConnection();
@@ -88,6 +90,7 @@ public class PostgreSQLJDBC {
         }
     }
 
+    @Override
     public void updateCar(Car car) {
         try {
             conn = getConnection();
@@ -107,6 +110,7 @@ public class PostgreSQLJDBC {
         }
     }
 
+    @Override
     public void deleteCar(Long id) {
         try {
             conn = getConnection();

@@ -8,7 +8,7 @@
 <body>
 <div>
     <h2>Car Manager</h2>
-    <h3><a href="/spring/new">New Car</a></h3>
+    <h3><a href="/new">New Car</a></h3>
     <table border="1" cellpadding="5">
         <tr>
             <th>ID</th>
@@ -21,9 +21,9 @@
                 <td>${car.name}</td>
                 <td>${car.price}</td>
                 <td>
-                    <a href="/spring/edit?id=${car.id}">Edit</a>
+                    <a href="/edit?id=${car.id}">Edit</a>
 
-                    <a href="/spring/delete?id=${car.id}">Delete</a>
+                    <a href="/delete?id=${car.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
