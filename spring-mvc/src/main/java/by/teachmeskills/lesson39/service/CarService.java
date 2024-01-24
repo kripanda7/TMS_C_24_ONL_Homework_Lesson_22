@@ -6,10 +6,12 @@ import by.teachmeskills.lesson39.mapper.CarMapper;
 import by.teachmeskills.lesson39.entity.Car;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
 @RequiredArgsConstructor
 public class CarService {
 

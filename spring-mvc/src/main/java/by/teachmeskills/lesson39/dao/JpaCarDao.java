@@ -3,7 +3,6 @@ package by.teachmeskills.lesson39.dao;
 import by.teachmeskills.lesson39.entity.Car;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,9 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
 @RequiredArgsConstructor
-public class HibernateCarDao implements CarDao {
+public class JpaCarDao implements CarDao {
 
     @PersistenceContext
     private EntityManager entityManager;
