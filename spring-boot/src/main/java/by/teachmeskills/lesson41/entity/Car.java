@@ -1,4 +1,4 @@
-package by.teachmeskills.lesson39.entity;
+package by.teachmeskills.lesson41.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

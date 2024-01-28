@@ -1,6 +1,6 @@
 package by.teachmeskills.lesson41.service;
 
-import by.teachmeskills.lesson41.dao.PostgreSQLJDBC;
+import by.teachmeskills.lesson41.dao.CarDao;
 import by.teachmeskills.lesson41.dto.CarDto;
 import by.teachmeskills.lesson41.mapper.CarMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,26 +12,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CarService {
 
-    private final PostgreSQLJDBC postgreSQLJDBC;
+    private final CarDao carDao;
     private final CarMapper carMapper;
 
     public List<CarDto> getCars() {
-        return postgreSQLJDBC.getCars().stream().map(carMapper::toDTO).toList();
+        return carDao.getCars().stream().map(carMapper::toDTO).toList();
     }
 
     public void save(CarDto carDto) {
-        postgreSQLJDBC.saveCar(carMapper.toModel(carDto));
+        carDao.saveCar(carMapper.toModel(carDto));
     }
 
     public void delete(Long id) {
-        postgreSQLJDBC.deleteCar(id);
+        carDao.deleteCar(id);
     }
 
     public CarDto getCarById(Long id) {
-        return carMapper.toDTO(postgreSQLJDBC.getCarById(id));
+        return carMapper.toDTO(carDao.getCarById(id).get());
     }
 
     public void update(CarDto carDto) {
-        postgreSQLJDBC.updateCar(carMapper.toModel(carDto));
+        carDao.updateCar(carMapper.toModel(carDto));
     }
 }
