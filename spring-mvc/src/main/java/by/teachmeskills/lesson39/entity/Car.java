@@ -8,14 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "car", schema = "tms")
+@Table(name = "car")
 @NamedQueries(
         {
                 @NamedQuery(name = "Car.selectAll", query = "SELECT c FROM Car c where deleted = false order by id ASC"),
