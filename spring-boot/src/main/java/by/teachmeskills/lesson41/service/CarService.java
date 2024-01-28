@@ -19,8 +19,8 @@ public class CarService {
         return carDao.getCars().stream().map(carMapper::toDTO).toList();
     }
 
-    public void save(CarDto carDto) {
-        carDao.saveCar(carMapper.toModel(carDto));
+    public CarDto save(CarDto carDto) {
+        return carMapper.toDTO(carDao.saveCar(carMapper.toModel(carDto)));
     }
 
     public void delete(Long id) {
