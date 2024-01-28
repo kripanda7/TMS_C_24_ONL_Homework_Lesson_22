@@ -14,6 +14,11 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @Table(name = "car")
+@NamedQueries(
+        {
+                @NamedQuery(name = "Car.selectAll", query = "SELECT c FROM Car c where deleted = false order by id ASC"),
+        }
+)
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +29,7 @@ public class Car {
     @Column(name = "price")
     private Integer price;
     @Column(name = "deleted")
-    private Boolean deleted;
+    private Boolean deleted = false;
 
     public Car(Long id, String name, Integer price, Boolean deleted) {
         this.id = id;
