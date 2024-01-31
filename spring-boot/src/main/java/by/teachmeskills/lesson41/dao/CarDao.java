@@ -10,7 +10,7 @@ public interface CarDao {
 
     Optional<Car> getCarById(Long id);
 
-    void saveCar(Car car);
+    Car saveCar(Car car);
 
     void updateCar(Car car);
 

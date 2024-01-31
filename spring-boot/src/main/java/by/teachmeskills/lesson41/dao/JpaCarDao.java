@@ -27,8 +27,9 @@ public class JpaCarDao implements CarDao {
     }
 
     @Override
-    public void saveCar(Car car) {
+    public Car saveCar(Car car) {
         entityManager.persist(car);
+        return car;
     }
 
     @Override
