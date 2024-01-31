@@ -1,5 +1,6 @@
 package by.teachmeskills.lesson41.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,4 +20,7 @@ public class CarDto {
     @Min(1000)
     @Max(1000000)
     private Integer price;
+
+    @JsonIgnore
+    private byte[] file;
 }

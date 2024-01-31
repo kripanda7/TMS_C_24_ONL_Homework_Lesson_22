@@ -2,3 +2,10 @@ database:
   url: "jdbc:postgresql://localhost:5432/tms_database"
   user: "kripanda"
   password: 12345
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 50MB
+      max-file-size: 20MB
