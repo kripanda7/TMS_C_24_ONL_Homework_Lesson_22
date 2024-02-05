@@ -28,6 +28,7 @@
         <tomcat-dbcp.version>9.0.80</tomcat-dbcp.version>
         <spring.version>5.3.27</spring.version>
         <hibernate-core.version>5.6.15.Final</hibernate-core.version>
+        <jackson-dataformat-xml.version>2.13.5</jackson-dataformat-xml.version>
     </properties>
 
     <dependencies>
@@ -102,6 +103,19 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <version>${tomcat-dbcp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson-dataformat-xml.version}</version>
         </dependency>
     </dependencies>
 
