@@ -2,6 +2,8 @@ package by.teachmeskills.lesson41.controller;
 
 import by.teachmeskills.lesson41.dto.CarDto;
 import by.teachmeskills.lesson41.service.CarService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -29,17 +31,20 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 @RequestMapping("/api/cars")
 @RequiredArgsConstructor
+@Tag(name = "users")
 public class CarRestController {
 
     private final CarService carService;
 
     @GetMapping
+    @Operation(operationId = "all", description = "Fetch all cars")
     public List<CarDto> getCars() {
         return carService.getCars();
     }
 
     @SneakyThrows
     @PostMapping
+    @Operation(operationId = "all", description = "Create new car")
     public ResponseEntity<CarDto> create(@RequestPart("carFile") MultipartFile carFile,
                                          @RequestPart("car") CarDto carDto) {
         carDto.setFile(carFile.getBytes());
@@ -49,6 +54,7 @@ public class CarRestController {
     }
 
     @GetMapping(value = "/{carId}/file", produces = MediaType.IMAGE_JPEG_VALUE)
+    @Operation(operationId = "all", description = "Find car by id")
     public ResponseEntity<byte[]> getFileById(@PathVariable("carId") Long id) {
         CarDto result = carService.getCarById(id);
         return ok(result.getFile());
@@ -56,11 +62,13 @@ public class CarRestController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(operationId = "all", description = "Delete car by id")
     public void delete(@PathVariable Long id) {
         carService.delete(id);
     }
 
     @PutMapping("/{id}")
+    @Operation(operationId = "all", description = "Update information of car")
     public ResponseEntity<CarDto> update(@PathVariable Long id, @RequestBody CarDto carDto) {
         if (!Objects.equals(id, carDto.getId())) {
             return ResponseEntity.badRequest().build();
