@@ -1,14 +1,24 @@
-database:
-  url: "jdbc:postgresql://localhost:5432/tms_database"
-  user: "kripanda"
-  password: 12345
-
 spring:
   servlet:
     multipart:
       enabled: true
       file-size-threshold: 50MB
       max-file-size: 20MB
+  jpa:
+    show-sql: true
+    hibernate:
+#      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tms_database
+    username: kripanda
+    password: 12345
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      leak-detection-threshold: 5000 # in msecs
 
 springdoc:
   swagger-ui:
