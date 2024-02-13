@@ -7,7 +7,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-#      ddl-auto: validate
+      ddl-auto: validate
     open-in-view: false
     properties:
       hibernate:
@@ -25,3 +25,7 @@ springdoc:
     path: /docs.html
   api-docs:
     path: /api/docs.yaml
+
+jwt:
+  secret: '7AA1FDEA450B39D38A2351AFEB91A1CC5C7DC48FFD8E0ED22361092291380B8E'
+  expiration: '10m'
