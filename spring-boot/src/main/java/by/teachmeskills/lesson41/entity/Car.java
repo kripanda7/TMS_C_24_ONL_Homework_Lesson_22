@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "car")
+@Table(name = "car", schema = "tms")
 @NamedQueries(
         {
                 @NamedQuery(name = "Car.selectAll", query = "SELECT c FROM Car c where deleted = false order by id ASC"),
