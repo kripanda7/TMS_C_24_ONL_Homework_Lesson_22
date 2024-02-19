@@ -12,13 +12,19 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    generate-ddl: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/tms_database
+    url: jdbc:postgresql://localhost:5432/tms_database?currentSchema=tms
     username: kripanda
     password: 12345
     driver-class-name: org.postgresql.Driver
     hikari:
       leak-detection-threshold: 5000 # in msecs
+      schema: tms
+  liquibase:
+    change-log: 'classpath:db-migrations/changeLog.xml'
+    enabled: true
+    default-schema: tms
 
 springdoc:
   swagger-ui:
